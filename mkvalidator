@@ -4,7 +4,7 @@ echo "Searching $1 for mkv files"
 find $1 -name '*.mkv' -print0 | 
     while IFS= read -r -d $'\0' line; do 
         echo "Validating $line"
-        /usr/local/bin/mkvalidator --quiet "$MKV"
+        /usr/local/bin/mkvalidator --quiet "$line"
         STATUS=$?
         if [ $STATUS -ne 0 ]; then
           echo "Oh Bugger, errors found!"
