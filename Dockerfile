@@ -66,5 +66,5 @@ COPY mkvalidator /scripts/mkvalidator
 RUN chmod +x /scripts/mkvalidator
 
 VOLUME /data
-VOLUME /mkverrors.txt
-CMD ["/scripts/mkvalidator", "/data"]
+VOLUME /output
+CMD ["/scripts/mkvalidator", "/data", "/output"]
