@@ -67,5 +67,4 @@ RUN chmod +x /scripts/mkvalidator
 
 VOLUME /data
 VOLUME /mkverrors.txt
-ENTRYPOINT ["/scripts/mkvalidator"]
-CMD ["/data"]
+CMD ["/scripts/mkvalidator", "/data"]
