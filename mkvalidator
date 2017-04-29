@@ -1,0 +1,13 @@
+#!/bin/bash
+. /etc/environment
+echo "Searching $1 for mkv files"
+find $1 -name '*.mkv' -print0 | 
+    while IFS= read -r -d $'\0' line; do 
+        echo "Validating $line"
+        /usr/local/bin/mkvalidator --quiet "$MKV"
+        STATUS=$?
+        if [ $STATUS -ne 0 ]; then
+          echo "Oh Bugger, errors found!"
+          echo "$line" >> /mkverrors.txt
+        fi
+    done
