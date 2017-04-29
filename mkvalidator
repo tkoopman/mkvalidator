@@ -4,7 +4,7 @@ echo "Searching $1 for mkv files"
 find $1 -name '*.mkv' -print0 | 
     while IFS= read -r -d $'\0' line; do 
         echo "Validating $line"
-        dirname=$(dirname "$fullfile")
+        dirname=$(dirname "$line")
         mkdir -p "$2/${dirname}"
         /usr/local/bin/mkvalidator --quiet "$line" > "$2/${line}.log"
         STATUS=$?
