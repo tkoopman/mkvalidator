@@ -6,7 +6,7 @@ find $1 -name '*.mkv' -print0 |
         echo "Validating $line"
         dirname=$(dirname "$line")
         mkdir -p "$2/${dirname}"
-        /usr/local/bin/mkvalidator --quiet "$line" > "$2/${line}.log"
+        /usr/local/bin/mkvalidator --quiet "$line" > "$2/${line}.log" 2>&1
         STATUS=$?
         if [ $STATUS -eq 0 ]; then
           rm "$2/${line}.log"
