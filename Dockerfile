@@ -63,7 +63,9 @@ RUN \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY mkvalidator /scripts/mkvalidator
-RUN chmod +x /scripts/mkvalidator
+COPY ffmpegvalidator /scripts/ffmpegvalidator
+RUN chmod +x /scripts/mkvalidator && \
+    chmod +x /scripts/ffmpegvalidator
 
 VOLUME /data
 VOLUME /output
