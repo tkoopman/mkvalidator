@@ -1,0 +1,17 @@
+#!/bin/bash
+. /etc/environment
+echo "Searching $1 for movie files"
+find $1 \( -name "*.mkv" -o -name "*.mp4" -o -name "*.avi" \) |
+    while IFS= read -r -d $'\n' line; do
+        echo "Validating $line"
+        dirname=$(dirname "$line")
+        mkdir -p "$2/${dirname}"
+        OUTPUT=$(/usr/bin/ffmpeg -v error -i "$line" -f null - 2>&1)
+        STATUS=$?
+        if [ -z "${OUTPUT// }" ]; then
+          echo "$OUTPUT" > "$2/${line}.log"
+        fi
+    done
+find $2 -type d -empty -delete
+find $2 -type d -empty -delete
+find $2 -type d -empty -delete
