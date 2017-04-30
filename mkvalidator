@@ -11,8 +11,9 @@ find $1 -name '*.mkv' -print0 |
         if [ $STATUS -eq 0 ]; then
           rm "$2/${line}.log"
         else
-          ERR=$(awk -vORS=. -F '[\r:]' '/ERR/{print $2}' "$2/${line}.log" | sort | uniq)
-          mv "$2/${line}.log" "$2/${line}.${ERR}log"
+          ERR=$(awk -F '[\r]' '/ERR/{print $2}' "$2/${line}.log" | sort | uniq)
+          $ERR2=$(echo "$ERR" | awk -vORS=. -F '[:]' '{print}')
+          mv "$2/${line}.log" "$2/${line}.${ERR2}log"
         fi
     done
 find $2 -type d -empty -delete
