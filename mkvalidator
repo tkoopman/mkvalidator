@@ -12,7 +12,7 @@ find $1 -name '*.mkv' -print0 |
           rm "$2/${line}.log"
         else
           ERR=$(awk -F '[\r:]' '/ERR/{print $2}' "$2/${line}.log" | sort | uniq)
-          $ERR2=$(echo "$ERR" | awk -vORS=. '{print}')
+          ERR2=$(echo "$ERR" | awk -vORS=. '{print}')
           mv "$2/${line}.log" "$2/${line}.${ERR2}log"
         fi
     done
